@@ -4,7 +4,7 @@ var lives = 2;
 var powerPellets = 4;
 
 // Define your ghosts here
-var inky = {
+var Inky = {
   menu_option: '1',
   name: 'Inky',
   colour: 'Red',
@@ -37,7 +37,7 @@ var Clyde = {
 };
 
 // replace this comment with your four ghosts setup as objects
-var ghosts = ['Inky', 'Blinky', 'Pinky', 'Clyde'];
+var ghosts = [Inky, Blinky, Pinky, Clyde];
 
 
 // Draw the screen functionality
@@ -101,15 +101,31 @@ function processInput(key) {
     case 'p':
       eatPowerPellet();
       break
+    case '1':
+      eatGhost();
+      break;
+    case '2':
+      eatGhost();
+      break;
+    case '3':
+      eatGhost();
+      break;
+    case '4':
+      eatGhost();
+      break;
     default:
       console.log('\nInvalid Command!');
   }
 }
 
 function eatGhost(ghost) {
-  if (ghost.edible === 'false') {
-    console.log(ghost.name + ghost.colour + 'kills pacman');
+  if (ghost.edible === false) {
+    console.log(ghost.colour + ghost.name + 'kills pacman');
     lives -= 1;
+  } else if (ghost.edible === true) {
+    console.log(ghost.colour + ghost.name + 'was eaten by you!');
+    score += 200;
+    ghost.edible === true;
   } else if (ghost.lives === 0) {
     process.exit();
     console.log('\n GAME OVER');
