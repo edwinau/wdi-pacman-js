@@ -82,10 +82,10 @@ function eatDot() {
 }
 
 function eatPowerPellet() {
-  console.log('\nChomp!');
   score += 50;
   ghosts.edible === true;
   powerPellets -= 1;
+  console.log('\nChomp!');
 }
 
 // Process Player's Input
@@ -102,16 +102,16 @@ function processInput(key) {
       eatPowerPellet();
       break
     case '1':
-      eatGhost();
+      eatGhost(ghosts[0]);
       break;
     case '2':
-      eatGhost();
+      eatGhost(ghosts[1]);
       break;
     case '3':
-      eatGhost();
+      eatGhost(ghosts[2]);
       break;
     case '4':
-      eatGhost();
+      eatGhost(ghosts[3]);
       break;
     default:
       console.log('\nInvalid Command!');
@@ -120,12 +120,13 @@ function processInput(key) {
 
 function eatGhost(ghost) {
   if (ghost.edible === false) {
-    console.log(ghost.colour + ghost.name + 'kills pacman');
+    console.log('\nChomp!')
+    console.log(ghost.colour + ' ' + ghost.name + ' kills pacman');
     lives -= 1;
   } else if (ghost.edible === true) {
-    console.log(ghost.colour + ghost.name + 'was eaten by you!');
+    console.log(ghost.colour + ' ' + ghost.name + ' was eaten by pacman!' + '\nChomp!');
     score += 200;
-    ghost.edible === true;
+    ghost.edible === false;
   } else if (ghost.lives === 0) {
     process.exit();
     console.log('\n GAME OVER');
