@@ -96,10 +96,16 @@ function processInput(key) {
   }
 }
 
+function eatGhost(ghost) {
+  if (ghost.edible === 'false');
+    console.log(ghost.name + ghost.colour + 'kills pacman');
+    lives -= 1;
+  }
 
 
 
-//
+
+
 // YOU PROBABLY DON'T WANT TO CHANGE CODE BELOW THIS LINE
 //
 
