@@ -62,10 +62,10 @@ function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
   console.log('(p) Eat Power-Pellet');
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+  console.log('(1) Eat Inky (' + ghosts[0].edible + ')' );
+  console.log('(2) Eat Blinky (' + ghosts[1].edible + ')' );
+  console.log('(3) Eat Pinky (' + ghosts[2].edible + ')' );
+  console.log('(4) Eat Clyde (' + ghosts[3].edible + ')' );
   console.log('(q) Quit');
 }
 
@@ -104,7 +104,7 @@ function processInput(key) {
       break;
     case 'p':
       eatPowerPellet();
-      break
+      break;
     case '1':
       eatGhost(ghosts[0]);
       break;
@@ -130,7 +130,7 @@ function eatGhost(ghost) {
   } else if (ghost.edible === true) {
     console.log(ghost.colour + ' ' + ghost.name + ' was eaten by pacman!' + '\nChomp!');
     score += 200;
-    ghost.edible === false;
+    ghost.edible = false;
   } else if (ghost.lives === 0) {
     process.exit();
     console.log('\n GAME OVER');
