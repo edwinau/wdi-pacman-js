@@ -81,9 +81,13 @@ function eatDot() {
   score += 10;
 }
 
+
+
 function eatPowerPellet() {
   score += 50;
-  ghosts.edible === true;
+    for (var index = 0; index < ghosts.length; index++) {
+      ghosts[index].edible = true;
+    }
   powerPellets -= 1;
   console.log('\nChomp!');
 }
