@@ -101,7 +101,8 @@ function eatGhost(ghost) {
     console.log(ghost.name + ghost.colour + 'kills pacman');
     lives -= 1;
   } else if (ghost.lives === 0) {
-    console.log('\n GAME OVER')
+    process.exit();
+    console.log('\n GAME OVER');
   }
 }
 
