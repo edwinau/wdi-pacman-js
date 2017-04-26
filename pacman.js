@@ -97,10 +97,13 @@ function processInput(key) {
 }
 
 function eatGhost(ghost) {
-  if (ghost.edible === 'false');
+  if (ghost.edible === 'false') {
     console.log(ghost.name + ghost.colour + 'kills pacman');
     lives -= 1;
+  } else if (ghost.lives === 0) {
+    console.log('\n GAME OVER')
   }
+}
 
 
 
