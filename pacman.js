@@ -2,6 +2,7 @@
 var score = 0;
 var lives = 2;
 var powerPellets = 4;
+var dots = 240
 
 // Define your ghosts here
 var Inky = {
@@ -55,12 +56,24 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives + '   Power-Pellet: ' + powerPellets );
+  console.log('Score: ' + score + '     Lives: ' + lives + '\n' + '\n' + 'Power-Pellets Left: ' + powerPellets + '\n' + '\n' + 'Dots Left: ' + dots );
 }
 
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
-  console.log('(d) Eat Dot');
+  if (dots <= 240 && dots >= 100) {
+    console.log('(d) Eat Dot');
+    console.log('(t) Eat 10 Dots');
+    console.log('(h) Eat 100 Dots');
+    console.log('(r) Eat Remaining Dots');
+  } else if (dots <= 99 && dots >=10) {
+    console.log('(d) Eat Dot');
+    console.log('(t) Eat 10 Dots');
+    console.log('(r) Eat Remaining Dots');
+  } else if (dots <= 9 && dots >= 0) {
+    console.log('(d) Eat Dot');
+    console.log('(r) Eat Remaining Dots');
+}
   console.log('(p) Eat Power-Pellet');
   console.log('(1) Eat Inky (' + ghostState(ghosts[0]) + ')' );
   console.log('(2) Eat Blinky (' + ghostState(ghosts[1]) + ')' );
@@ -92,9 +105,26 @@ function displayPrompt() {
 function eatDot() {
   console.log('\nChomp!');
   score += 10;
+  dots -=1;
 }
 
+function eatRemainDot() {
+  console.log('\nChomp!');
+  score = score + dots*10;
+  dots = 0;
+}
 
+function eatTenDot() {
+  console.log('\nChomp!');
+  score += 100;
+  dots -= 10;
+}
+
+function eatHundredDot() {
+  console.log('\nChomp!');
+  score += 1000;
+  dots -= 100;
+}
 
 function eatPowerPellet() {
   score += 50;
@@ -113,7 +143,29 @@ function processInput(key) {
       process.exit();
       break;
     case 'd':
-      eatDot();
+      if (dots <= 0) {
+        console.log('\nNo more Dots to Eat');
+        break;
+      } else {
+        eatDot();
+      }
+      break;
+    case 't':
+      if (dots >= 10){
+        eatTenDot();
+      } else {
+        eatRemainDot();
+      }
+      break;
+    case 'h':
+      if (dots >= 100){
+        eatHundredDot();
+      } else {
+        eatRemainDot();
+      }
+      break;
+    case 'r':
+      eatRemainDot();
       break;
     case 'p':
       eatPowerPellet();
