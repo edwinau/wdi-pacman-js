@@ -62,12 +62,25 @@ function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
   console.log('(p) Eat Power-Pellet');
-  console.log('(1) Eat Inky (' + ghosts[0].edible + ')' );
-  console.log('(2) Eat Blinky (' + ghosts[1].edible + ')' );
-  console.log('(3) Eat Pinky (' + ghosts[2].edible + ')' );
-  console.log('(4) Eat Clyde (' + ghosts[3].edible + ')' );
+  console.log('(1) Eat Inky (' + ghostState(ghosts[0]) + ')' );
+  console.log('(2) Eat Blinky (' + ghostState(ghosts[1]) + ')' );
+  console.log('(3) Eat Pinky (' + ghostState(ghosts[2]) + ')' );
+  console.log('(4) Eat Clyde (' + ghostState(ghosts[3]) + ')' );
   console.log('(q) Quit');
 }
+
+//line 65 now read Eat Inky (true) but I want it to read Eat Inky (edible)
+
+//if ghost.edible ===true, then print edible
+
+function ghostState(ghost) {
+  if (ghost.edible === true) {
+      return "edible";
+  } else if (ghost.edible === false) {
+      return "inedible";
+  }
+};
+
 
 function displayPrompt() {
   // process.stdout.write is similar to console.log except it doesn't add a new line after the text
