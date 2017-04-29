@@ -2,8 +2,8 @@
 var score = 0;
 var lives = 2;
 var powerPellets = 4;
-var dots = 240
-
+var dots = 240;
+var numGhost = 0;
 // Define your ghosts here
 var Inky = {
   menu_option: '1',
@@ -70,7 +70,7 @@ function displayMenu() {
     console.log('(d) Eat Dot');
     console.log('(t) Eat 10 Dots');
     console.log('(r) Eat Remaining Dots');
-  } else if (dots <= 9 && dots >= 0) {
+  } else if (dots <= 9 && dots > 0) {
     console.log('(d) Eat Dot');
     console.log('(r) Eat Remaining Dots');
 }
@@ -193,14 +193,39 @@ function eatGhost(ghost) {
     console.log(ghost.colour + ' ' + ghost.name + ' kills pacman');
     lives -= 1;
   } else if (ghost.edible === true) {
-    console.log(ghost.colour + ' ' + ghost.name + ' was eaten by pacman!' + '\nChomp!');
-    score += 200;
-    ghost.edible = false;
-  } else if (ghost.lives === 0) {
-    process.exit();
-    console.log('\n GAME OVER');
+    numGhost += 1;
+      switch(numGhost){
+        case 1:
+          point = 200;
+          score += point;
+          console.log(ghost.colour + ' ' + ghost.name + ' was eaten by pacman! Points: '+ point + '\nChomp!');
+          ghost.edible = false;
+          break;
+        case 2:
+          point = 400;
+          score += point;
+          console.log(ghost.colour + ' ' + ghost.name + ' was eaten by pacman! Points: '+ point + '\nChomp!');
+          ghost.edible = false;
+          break;
+        case 3:
+          point = 800;
+          score += point;
+          console.log(ghost.colour + ' ' + ghost.name + ' was eaten by pacman! Points: '+ point + '\nChomp!');
+          ghost.edible = false;
+          break;
+        case 4:
+          point = 1600;
+          score += point;
+          console.log(ghost.colour + ' ' + ghost.name + ' was eaten by pacman! Points: '+ point + '\nChomp!');
+          ghost.edible = false;
+          break;
+        }
+    } else if (ghost.lives === 0) {
+      process.exit();
+      console.log('\n GAME OVER');
+    }
   }
-}
+
 
 
 
